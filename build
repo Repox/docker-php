@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+cd $DIR/nginx
+docker build -t repox/nginx:latest .
+docker push repox/nginx:$1
+docker push repox/nginx:latest
+
+cd $DIR/php7.0
+docker build -t repox/php:7.0 .
+docker push repox/php:7.0
+
+cd $DIR/php7.1
+docker build -t repox/php:7.1 .
+docker push repox/php:7.1
+
+cd $DIR/php7.2
+docker build -t repox/php:7.2 -t repox/php:latest .
+docker push repox/php:7.2
+docker push repox/php:latest
